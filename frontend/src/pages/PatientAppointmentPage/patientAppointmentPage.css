@@ -1,0 +1,129 @@
+.patient-appointment-bg-container{
+    overflow-y: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-color: #ebe8fb;
+    width: 100%;
+}
+
+#rating-submit{
+    color: #844627;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #844627;
+    background-color: #f5f5f5;
+    margin-top: 2px;
+    height: 35px;
+}
+.patient-appointment-list{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    
+}
+
+.appointment-item{
+    list-style-type: none;
+    box-shadow:0px 0.5px 0px 0px grey;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 1px;
+    height: auto;
+    
+    
+
+}
+
+.doctor-name-reason{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 2px;
+
+}
+
+
+.doctor-appointment-picture{
+    width:45px;
+    height:45px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* margin-left: 3px; */
+    align-self: center;
+}
+
+.appointment-doctor-name{
+    color: #844627;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+
+.mid{
+    justify-self: center;
+    flex-grow: 1;
+    align-self: center;
+}
+
+.appointment-doctor-reason{
+    color: #557083;
+    font-size: 13px;
+    font-weight:00;
+}
+
+.appointment-doctor-status{
+    color: #f6cd84;
+    height: 20px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 13%;
+    background-color: #ffefd5;
+}
+
+.appointment-doctor-time{
+    color: #557083;
+    font-size: 13px;
+    font-weight: 600;
+    align-self: center;
+    margin-top: 2px;
+}
+
+.rating-form{
+    /* height: 100%; */
+    /* width: 30%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* .select-container{
+    height: 55px;
+    
+} */
+
+@media screen and (min-width:576px){
+    .rating-form{
+        height: 100%; 
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    } 
+
+    select{
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    #rating-submit{
+        height: 50%;
+        /* width: fit-content; */
+    }
+}

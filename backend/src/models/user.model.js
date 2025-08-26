@@ -1,6 +1,19 @@
 import mongoose from "mongoose"
 
-import Rating from "./rating.model.js"
+const ratingSchema = new mongoose.Schema({
+    userId :{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        // required:true,
+    },
+    score:{
+        type:Number,
+        default:0,
+        min: 0,
+        max: 5,
+    }
+})
+
 
 const userSchema = new mongoose.Schema({
     fullName:{
@@ -20,9 +33,10 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        required: [true,'Password must consist of 6-9 characters'],
+        required: [true,'Password must consist atleast 6 characters'],
         trim: true,
         minlength: 6,
+        
         
     },
     phoneNumber: {
@@ -40,7 +54,7 @@ const userSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        enum: ['patient', 'doctor'],
+        enum: ['patient', 'doctor',"admin"],
         default: 'patient',
         required:[true, 'Role is required']
     },
@@ -51,31 +65,41 @@ const userSchema = new mongoose.Schema({
     },
     
     patientInfo:{
-        
-        bloodGroup:{
-            type:String,
-            enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
-            required:[function(){
-                return this.parent().role ==='patient'
-            }, 'Blood group is required']
-        },age:{
-            type:Number,
-            required:[function(){
-                return this.parent().role ==='patient'
-            }, 'Age is required'],
-            min:[0, 'Age cannot be negative'],
-            max:[100, 'Age cannot exceed 100 years']
-        },
+        type:new mongoose.Schema({
+            bloodGroup:{
+                type:String,
+                enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+                required:[function(){
+                    return this.parent().role ==='patient'
+                }, 'Blood group is required']
+            },
+            age:{
+                type:Number,
+                required:[function(){
+                    return this.parent().role ==='patient'
+                }, 'Age is required'],
+                min:[0, 'Age cannot be negative'],
+                max:[100, 'Age cannot exceed 100 years']
+            },
+        }),
     },
+    
     doctorInfo:{
-        specialization: {
-            type: String,
-            required: [function() {
-                return this.parent().role === 'doctor';
-            }, 'Specialization is required'],
-            enum: ['Cardiologist', 'Dermatologist', 'Neurologist', 'Pediatrician', 'Gynecologist', 'Orthopedic', "Dentist"],
+        type:new mongoose.Schema({
+            specialization: {
+                type: String,
+                required: [function() {
+                    return this.parent().role === 'doctor';
+                }, 'Specialization is required'],
+                enum: ['Cardiologist', 'Dermatologist', 'Neurologist', 'Pediatrician', 'Gynecologist', 'Orthopedic', "Dentist"],
             trim: true,
             maxlength: 50
+        },
+        bio:{
+            type:String,
+            required:[ function() {
+                return this.parent().role === 'doctor';
+            }, 'Bio is required'],
         },
         experience: {
             type: Number,
@@ -94,19 +118,37 @@ const userSchema = new mongoose.Schema({
             enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             trim: true
         },
-        timeSlots:[{
-            startTime:{type:String,required:[function() {
-                return this.parent().role === 'doctor';
-            }, 'Start Time is required'],
-             match: [/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)']},
-            endTime:{type:String,required:[function() {
-                return this.parent().role === 'doctor';
-            }, 'End Time is required'], match: [/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)']},
-        },],
-        ratings: [Number],
-    }
+        timeSlots:{
+             type: new mongoose.Schema({
+                startTime: {
+                type: String,
+                required: [function () {
+                    return this.parent().role === 'doctor';
+                }, 'Start Time is required'],
+                match: [/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'],
+                default: '09:00'
+                },
+                endTime: {
+                type: String,
+                required: [function () {
+                    return this.parent().role === 'doctor';
+                }, 'End Time is required'],
+                match: [/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'],
+                default: '18:00'
+                },
+            }),
+            
+        },
+        ratings:  [ratingSchema],
+        patientCount: {
+            type: Number,
+            default: 0
+        },
+     }) },
 
-},{timestamps: true})
+
+},{timestamps: true})   
+
 
 const User = mongoose.model('User', userSchema)
 

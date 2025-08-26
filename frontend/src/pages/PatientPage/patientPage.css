@@ -1,0 +1,129 @@
+.patient-bg-page{
+   
+    min-height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 20px;
+}
+.patient-main-container{
+    
+    width: 100%;
+     
+}
+.doctor-category-title{
+    color: #000000;
+    font-size:16px;
+    font-weight: 600;
+}
+.doctor-category-list{
+    display: flex;
+    overflow-x: auto;
+    /* flex-wrap: wrap; */
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.input-container{
+    width:100%;
+    position: absolute;
+    margin-top: 15px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+.search-icon{
+    position: relative;
+}
+
+.doctor-name-input{
+    position: relative;
+    height: 30px;
+    border: none;
+    outline:none;
+    /* border: 1px solid #000000; */
+    box-shadow: 0px 2px 2px 0px gray;
+    width: 90%;
+    margin-bottom: 10px;
+   
+}
+.doctor-category-item {
+    margin: 10px;
+    list-style-type: none;
+    width: 15%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+.doctor-category-button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.doctor-category-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    align-self: center;
+}
+@media screen and (min-width:576px){
+    .doctor-category-image{
+        height: 80px;
+        width: 80px;
+    }
+}
+.doctor-list{
+    display:flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-top: 30px;
+}
+.doctor-link{
+    text-decoration: none;
+}
+
+.selected{
+    text-decoration: underline 1px solid#4362db;
+}
+
+.doctor-card{
+    list-style-type: none;
+    height:10%;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 10px ;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    
+}
+
+.doctor-card-image{
+    height: 70px;
+    width:70px;
+    border-radius: 50%;
+    margin-right: 15px;
+    align-self: center;
+}
+.doctor-card-name {
+     color: #000000;
+    font-size:16px;
+    font-weight: 600;
+}
+.doctor-card-specialization{
+    color: grey;
+    font-size: 14px;
+}
+
+.doctor-card-rating {
+    color: #ffffff;
+    background-color: #4362db;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    width: fit-content;
+}

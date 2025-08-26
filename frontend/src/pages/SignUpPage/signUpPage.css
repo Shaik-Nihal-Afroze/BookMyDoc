@@ -1,0 +1,120 @@
+
+
+.register-container {
+    background-image: linear-gradient(to right , #c8d5ce ,#f2f2f2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  /* margin-left:400px; */
+}
+
+.register-img {
+  height: 120px;
+  width: 180px;
+  object-fit: contain;
+  margin-right: 40px;
+  max-width: 100%;
+  box-sizing: border-box;
+  align-self: center;
+}
+@media screen and (max-width:576px) {
+  .register-img {
+  height:100px;
+  width: 40%;
+  align-self: center;
+}
+  
+}
+.register-form {
+     
+  background-color: #f0f5f3;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 670px;
+  min-height: 300px; /* Added to ensure form height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.form-heading {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.register-form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.register-form input,
+.register-form select {
+  height: 32px;
+  width: 100%;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+  max-width: 100%;
+  overflow: hidden; /* Prevent overflow inside input/select */
+}
+
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.register-form button:hover {
+  background-color: #0056b3;
+}
+
+.signup-label{
+    font-size: 18px;
+    color: #1e293b;
+}
+
+.options{
+    font-size: 16px;
+    color: #1e293b;
+}
+
+.select-options{
+    font-size: 16px;
+    color: #1e293b;
+}
+
+.signup-input{
+    font-size: 16px;
+    color: #1e293b;
+    border-radius: 30px;
+}
+
+.login-link{
+  font-size: 20px;
+  text-align: center;
+}
+
+.link{
+  font-weight: 500;
+  text-decoration: none;
+
+  color: #007bff;
+}

@@ -1,19 +1,40 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
-
+import cloudinary from '../lib/cloudinary.js'
 import { generateToken } from "../lib/utils.js";
 import { startSession } from "mongoose";
-import Rating from "../models/rating.model.js";
+
 
 // Register a new user
 export const signup = async (req, res) => {
-  const { fullName, email,phoneNumber,gender,image,patientInfo,doctorInfo, password, role } = req.body;
+
+   try {
+    // Parse nested JSON fields from FormData
+    if (req.body.patientInfo) {
+      try {
+        req.body.patientInfo = JSON.parse(req.body.patientInfo);
+      } catch {
+        return res.status(400).json({ message: "Invalid patientInfo format" });
+      }
+    }
+    if (req.body.doctorInfo) {
+      try {
+        req.body.doctorInfo = JSON.parse(req.body.doctorInfo);
+      } catch {
+        return res.status(400).json({ message: "Invalid doctorInfo format" });
+      }
+    }}
+  catch(error){
+      console.log(error.message)
+  }
+
+  const { fullName, email,phoneNumber,gender,image,patientInfo,doctorInfo, password, role,bio } = req.body;
   try {
     if (!fullName || !email || !password || !phoneNumber || !gender || !role) {
         if (role === 'patient' && (!patientInfo || !patientInfo.bloodGroup || !patientInfo.age)) {
             return res.status(400).json({ message: "All fields are required" });
         }
-        if (role === 'doctor' && (!doctorInfo || !doctorInfo.specialization || !doctorInfo.experience ||!doctorInfo.timeSlots || !doctorInfo.timeSlots.startTime || !doctorInfo.timeSlots.endTime || !doctorInfo.unAvailableDay)) {
+        if (role === 'doctor' && (!doctorInfo || !doctorInfo.specialization || !doctorInfo.experience ||!doctorInfo.timeSlots || !doctorInfo.timeSlots.startTime || !doctorInfo.timeSlots.endTime || !doctorInfo.unAvailableDay || !doctorInfo.bio)) {
             return res.status(400).json({ message: "All fields are required" });
         }
       
@@ -25,9 +46,19 @@ export const signup = async (req, res) => {
 
     if (user) return res.status(400).json({ message: "Email already exists" });
 
-    // create hash password 
-    // bcrypt is a hashing algorithm that is used to hash passwords
-    // it is a one way hashing algorithm
+    let imageUrl;
+    if(req.file){
+      const uploadResult = await new Promise((resolve,reject)=>{
+        cloudinary.uploader.upload_stream(
+          {resource_type:"image",folder:'user_profiles'},
+          (error,result) =>{
+            if (error) reject(error)
+            else resolve(result)
+          }
+        ).end(req.file.buffer)
+      })
+      imageUrl = uploadResult.secure_url
+    }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -41,7 +72,7 @@ export const signup = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      image,
+      image:imageUrl,
       gender,
       phoneNumber,  
       patientInfo: role === 'patient' ? patientInfo : undefined,  
@@ -72,7 +103,7 @@ export const signup = async (req, res) => {
             timeSlots:{
               startTime:newUser.startTime,
               endTime:newUser.endTime,
-            },rating:newUser.rating,
+            },
             unAvailableDay:newUser.unAvailableDay
         }
       });
@@ -126,7 +157,7 @@ export const login = async (req, res) => {
             timeSlots:{
               startTime:user.startTime,
               endTime:user.endTime,
-            },rating:user.rating,
+            },ratings:user.ratings,
             unAvailableDay:user.unAvailableDay
         }
     });
@@ -135,6 +166,8 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+
 
 export const logout = async (req, res) => {
   try {
@@ -157,13 +190,3 @@ export const checkAuth = (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-// export const getAllDoctors = async (req, res) => {
-//   try {
-//     const doctors = await User.find({ role: "doctor" }).select("-password");
-//     res.status(200).json(doctors);
-//   } catch (error) {
-//     console.log("Error in getAllDoctors controller", error.message);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// }
