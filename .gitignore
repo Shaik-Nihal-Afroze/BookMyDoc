@@ -3,12 +3,15 @@ node_modules/
 
 # Environment files
 .env
+.env.local
+.env.development
+.env.production
 
 # System files
 .DS_Store
 Thumbs.db
 
-# Log files
+# Logs
 npm-debug.log
 yarn-error.log
 *.log
@@ -19,12 +22,17 @@ yarn-error.log
 dist/
 build/
 coverage/
+.vite/
 
-# IDE settings
+# IDE
 .vscode/
 .idea/
 
 # Dependency locks
 
-yarn.lock
+# yarn.lock
+# package-lock.json
+# pnpm-lock.yaml
 
+# Local uploads
+uploads/

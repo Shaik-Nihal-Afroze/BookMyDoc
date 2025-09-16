@@ -12,6 +12,7 @@ import PatientPage from "./pages/PatientPage/patientPage";
 import LoginPage from "./pages/LoginPage/loginPage";
 import SignUpPage from "./pages/SignUpPage/signUpPage";
 import DoctorDetailsPage from "./pages/DoctorDetailsPage/doctorDetailsPage";
+
 import './App.css';
 
 import DoctorPage from "./pages/DoctorPage/doctorPage";
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/doctor" element={authUser?.role ==="doctor" ? <DoctorPage /> : <Navigate to="/login" />} />
         <Route path="/patient" element={authUser?.role ==="patient" ? <PatientPage /> : <Navigate to="/login" />} />
         <Route path="/doctor/:id" element={!authUser?<LoginPage/>:<DoctorDetailsPage />} />
+        
       </Routes>
       
       <ToastContainer />

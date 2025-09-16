@@ -66,16 +66,18 @@ useEffect(() => {
            <div className='doctor-numeric-main-container'>
             <div className='doctor-numeric-container'>
               <img src = "https://res.cloudinary.com/dze7v0evj/image/upload/v1754394396/patientLogo_vwredt.png" className='doctor-numeric-logo' alt="PL"/>
-              <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.ratings?.length}</p>
+              <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.ratings?.length} <br/>Patients</p>
             </div>
             <div className='doctor-numeric-container'>
               <img src = "https://res.cloudinary.com/dze7v0evj/image/upload/v1754394435/experienceLogo_jgw1uy.png" className='doctor-numeric-logo' alt="PL"/>
-              <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.experience}+</p>
+              <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.experience} yr + <br/>Experience</p>
+              
+              
             </div>
             <div className='doctor-numeric-container'>
               <img src = "https://res.cloudinary.com/dze7v0evj/image/upload/v1754394487/ratingLogo_cjbnma.png" className='doctor-numeric-logo' alt="PL"/>
               {/* <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.patientCount}</p> */}
-              <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.ratings.length ? doctorDetails.doctorInfo.ratings.reduce((acc, curr) => acc + curr.score, 0) / doctorDetails.doctorInfo.ratings.length : 0} <br/>Ratings</p>
+              <p className='doctor-numeric-text'>{doctorDetails.doctorInfo.ratings.length ? (doctorDetails.doctorInfo.ratings.reduce((acc, curr) => acc + curr.score, 0) / doctorDetails.doctorInfo.ratings.length).toFixed(1) : 0} <br/>Ratings</p>
               
             </div>
           </div>

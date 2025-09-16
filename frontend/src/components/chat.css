@@ -1,0 +1,141 @@
+/* frontend/src/components/chat.css */
+
+.chat-container {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 80vh; /* responsive height */
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  padding-right: 4px;
+}
+
+/* Message rows */
+.chat-message-row {
+  display: flex;
+  margin: 6px 0;
+}
+
+.chat-message-row.me {
+  justify-content: flex-end;
+}
+
+.chat-message-row.other {
+  justify-content: flex-start;
+}
+
+/* Message bubble */
+.chat-message {
+  padding: 8px;
+  border-radius: 8px;
+  max-width: 70%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+}
+
+.chat-message.me {
+  background: #dcf8c6;
+}
+
+.chat-message.other {
+  background: #fff;
+}
+
+.chat-text {
+  margin-bottom: 6px;
+}
+
+.chat-image {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.chat-time {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.no-messages {
+  color: #666;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Input row */
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.chat-file {
+  flex-shrink: 0;
+}
+
+.chat-send-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chat-send-btn:hover {
+  background: #0056b3;
+}
+
+/* 🔹 Responsive design */
+@media (max-width: 768px) {
+  .chat-container {
+    max-height: 70vh;
+    padding: 8px;
+  }
+
+  .chat-message {
+    max-width: 85%;
+  }
+
+  .chat-input-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .chat-file {
+    width: 100%;
+  }
+
+  .chat-send-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-container {
+    border: none;
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
+    align-self: flex-end;
+  }
+
+  .chat-message {
+    max-width: 90%;
+  }
+}

@@ -10,6 +10,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import '../DoctorDetailsPage/doctorDetailsPage.css'
 import Header from '../../components/Header/header.jsx'
 import { useAppointmentStore } from '../../store/useAppointmentStore'
+import Chat from '../../components/Chat';
+import ChatIcon from '../../assets/doctorProjectImages/chat_icon.png'
 
 const DoctorAppointmentPage = ({onBack})=>{
   const {getDoctorAppointments,updateAppointmentStatus,appointments} = useAppointmentStore()
@@ -18,7 +20,8 @@ const DoctorAppointmentPage = ({onBack})=>{
       const [statusButtonClicked,setStatusButton] = useState(null)
       const [updatedAppointmentStatus,setAppointmentStatus] = useState(null)
       const [appointmentId,setAppointmentId] = useState(null)
-
+      const [showChat,setShowChat] = useState(false)
+      const [selectedAppointmentChat,setSelectedAppointmentChat] = useState(null)
       const navigate = useNavigate()
 
       useEffect(()=>{
@@ -61,6 +64,14 @@ const DoctorAppointmentPage = ({onBack})=>{
           return 'cancel-status'
         }
       }
+
+       const onhandleChat = (appointmentChatid)=>{
+
+      setShowChat(!showChat)
+      setSelectedAppointmentChat(appointmentChatid)
+      
+    }
+
       // =  updatedAppointmentStatus==="confirmed" ? 'confirm-status' :"cancel-status"
   return (
     <div className='patient-appointment-bg-container'>
@@ -78,6 +89,30 @@ const DoctorAppointmentPage = ({onBack})=>{
                         <span className='appointment-doctor-name'>{eachAppointment.patient.fullName}</span>
                         <span className='appointment-doctor-reason'>{eachAppointment.reason}</span>
                     </div>
+                    
+
+                    {showChat?
+                                      
+                                        (eachAppointment.status === 'confirmed' && selectedAppointmentChat === eachAppointment._id && (
+                                          <div style={{ marginTop: "12px" }} className='chat-display-container'>
+                                            {/* <h4>Chat with Dr. {eachAppointment.doctor.fullName}</h4> */}
+                                            
+                                            <button onClick={onhandleChat} className='chat-cancel-button'>
+                                          {/* <img src={ChatIcon} className='chat-icon-image' alt="Chat"/> 
+                                          */}
+                                          X
+                                          </button>
+                                          
+                                            <Chat appointmentId={eachAppointment._id} />
+                                          
+                                            
+                                          </div>
+                                        )) :
+                                        (eachAppointment.status === 'confirmed' &&
+                                                            <div className='doctor-name-reason mid'>
+                                                            <button onClick={()=>onhandleChat(eachAppointment._id)} className='chat-button'>
+                                                              <img src={ChatIcon} className='chat-icon-image' alt="Chat"/>
+                                                              </button></div>)}
                     <div className='doctor-name-reason'>
                         <span className={`appointment-doctor-status ${eachAppointment.status !=="pending"?statusBackgroundColor(eachAppointment.status):''}
                       }`}>{eachAppointment.status}</span>
@@ -89,7 +124,14 @@ const DoctorAppointmentPage = ({onBack})=>{
                     {eachAppointment._id === appointmentId ?<div className='status-value-button-container'>
                       <button  className = 
                       "status-value-button confirm" onClick = {()=>onClickStatusChange("confirmed")}>Confirm</button><button className = 
-                      "status-value-button cancel" onClick = {()=>onClickStatusChange("canceled")}>Cancel</button></div>:''}
+                      "status-value-button cancel" onClick = {()=>onClickStatusChange("canceled")}>Cancel</button></div>
+                      :''}
+                      {/* {eachAppointment.status === 'confirmed' && (
+                                            <div style={{ marginTop: "12px" }}>
+                                              <h4>Chat with {eachAppointment.patient.fullName}</h4>
+                                              <Chat appointmentId={eachAppointment._id} />
+                                            </div>
+                                          )} */}
                 </li>
             ))}
           </ul>

@@ -2,16 +2,22 @@ import React ,{useEffect} from 'react'
 import { useAppointmentStore } from '../../store/useAppointmentStore.js'
 import {useUsersStore} from "../../store/useUsersStore.js"
 import "./patientAppointmentPage.css"
-import { FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft, FaLink } from 'react-icons/fa'
 import { useAuthStore } from '../../store/useAuthStore.js'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import Chat from '../../components/Chat';
+import ChatIcon from '../../assets/doctorProjectImages/chat_icon.png'
+
+
 const PatientAppointmentPage = ({onBack}) => {
     const {getPatientAppointments,appointments} = useAppointmentStore()
     const {authUser,checkAuth} = useAuthStore()
     const {doctorDetails,updateDoctorRating} = useUsersStore()
     const [score,setScore] = useState(0)
     const [doctor,setDoctorId] = useState(null)
+    const [showChat,setShowChat] = useState(false)
+    const [selectedAppointmentChat,setSelectedAppointmentChat] = useState(null)
     useEffect(()=>{
         getPatientAppointments()
         console.log(appointments)
@@ -58,6 +64,13 @@ const PatientAppointmentPage = ({onBack}) => {
         }
     }
 
+    const onhandleChat = (appointmentChatid)=>{
+
+      setShowChat(!showChat)
+      setSelectedAppointmentChat(appointmentChatid)
+      
+    }
+
   return (
     <div className='patient-appointment-bg-container'>
         <button onClick={onBack}>
@@ -86,11 +99,34 @@ const PatientAppointmentPage = ({onBack}) => {
                   </form>
                     :''}
                 </div>
+                {showChat?
+                  
+                    (eachAppointment.status === 'confirmed' && selectedAppointmentChat === eachAppointment._id && (
+                      <div style={{ marginTop: "12px" }} className='chat-display-container'>
+                        {/* <h4>Chat with Dr. {eachAppointment.doctor.fullName}</h4> */}
+                        
+                        <button onClick={onhandleChat} className='chat-cancel-button'>
+                      
+                      X
+                      </button>
+                      
+                        <Chat appointmentId={eachAppointment._id} />
+                      
+                        
+                      </div>
+                    )) :(eachAppointment.status === 'confirmed' &&
+                    <div className='doctor-name-reason mid'>
+                    <button onClick={()=>onhandleChat(eachAppointment._id)} className='chat-button'>
+                      <img src={ChatIcon} className='chat-icon-image' alt="Chat"/>
+                      </button></div>)}
                  <div className='doctor-name-reason'>
                         <span className={`appointment-doctor-status ${eachAppointment.status !=="pending"?statusBackgroundColor(eachAppointment.status):''}
                       }`}>{eachAppointment.status}</span>
                         <span className='appointment-doctor-time'>{eachAppointment.appointmentTime}</span>
                     </div>
+                      
+                    
+
             </li>
         ))}
       </ul>
