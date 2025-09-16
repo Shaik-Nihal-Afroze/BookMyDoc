@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 import {toast} from 'react-toastify';
 import axiosInstance from '../lib/axios.js'; // Adjust the import path as necessary
-import { getDoctor } from '../../../backend/src/controllers/user.controller.js';
+
 
 export const useUsersStore = create((set,get) => ({
   users: [],
