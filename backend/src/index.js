@@ -58,7 +58,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.json());
 
-const allowedOrigins = ['http://localhost:5173']; // dev: frontend url
+const allowedOrigins = ['http://localhost:5173','https://book-my-doc-rose.vercel.app']; // dev: frontend url
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(cookieParser());
 
@@ -76,7 +76,7 @@ app.use('/api/upload', uploadRoutes);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173','https://book-my-doc-rose.vercel.app'],
     credentials: true
   }
 });
