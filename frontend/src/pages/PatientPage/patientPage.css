@@ -26,8 +26,7 @@
 
 .input-container{
     width:100%;
-    background-color:#fff9e3;
-    bakcground-size:cover;
+    
     /* position: absolute; */
     margin-top: 15px;
     /* margin-bottom: 10%; */
@@ -47,6 +46,8 @@
     height: 30px;
     border: none;
     outline:none;
+   background-color:#fff9e3;
+    bakcground-size:cover;
     /* border: 1px solid #000000; */
     box-shadow: 0px 2px 2px 0px gray;
     width: 90%;
