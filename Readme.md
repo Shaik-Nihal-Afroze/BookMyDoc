@@ -27,7 +27,7 @@ BookMyDoc is a **FullStack MERN Application** that allows patients to book docto
 ## ⚙️ Installation
 
 ### 1. Clone the repository
-```bash
+
 git clone https://github.com/Shaik-Nihal-Afroze/BookMyDoc.git
 cd BookMyDoc
 
@@ -67,11 +67,11 @@ cd client
 npm start
 
 🔑 Demo Credentials
+
 👨‍⚕️ Doctors
       _____________________________________________
-      |Name       | Email             | Password
+      |Name       | Email             | Password   |
       _____________________________________________
-
       Naveen      | naveen@gmail.com  | naveen@007
       _____________________________________________
       Hussain     | hussain@gmail.com | hussain@007
@@ -80,11 +80,9 @@ npm start
       _____________________________________________
 
 🧑‍🦱 Patients
-
       _____________________________________________
-      |Name       | Email             | Password
+      |Name       | Email             | Password  |
       _____________________________________________
-
       Nihal      | nihal@gmail.com  | nihal@007
       _____________________________________________
       Arun Kumar     | arunkumar@gmail.com | arun@007@007
@@ -97,19 +95,19 @@ npm start
 📸 Screenshots
 
 
-##LoginPage (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_161956_mrtcts.png)
-##SignUp (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_162014_upm87f.png)
+  LoginPage (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_161956_mrtcts.png)
+  SignUp (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_162014_upm87f.png)
 
-#Patient -
+ Patient -
 
-## PatientHomePage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401309/patient-homePage.png)
-## DoctorDetailsPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401357/DoctotDetailspage.png)
-## PatientAppointmentPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401358/Patient-appointment-images.png)
+  PatientHomePage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401309/patient-homePage.png)
+  DoctorDetailsPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401357/DoctotDetailspage.png)
+  PatientAppointmentPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401358/Patient-appointment-images.png)
 
 
-#Doctor -
-##DoctorPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402690/Screenshot_2025-10-02_162711_rrspsy.png)
+Doctor -
+  DoctorPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402690/Screenshot_2025-10-02_162711_rrspsy.png)
 
-#Chat - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402690/Screenshot_2025-10-02_162711_rrspsy.png)
+Chat - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402690/Screenshot_2025-10-02_162711_rrspsy.png)
 
 
