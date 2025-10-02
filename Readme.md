@@ -49,7 +49,12 @@ Create a .env file inside the server folder and add your environment variables:
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
+CLOUDINARY_NAME = your_cloudinary_name
+API_KEY = your_api_key
+API_SECRET = your_api_secret
 
+#Frontend 
+VITE_API_URL = your backend url
 
 ⚠️ Note: Do NOT commit .env to GitHub. Keep it private!
 
@@ -69,39 +74,39 @@ npm start
 🔑 Demo Credentials
 
 👨‍⚕️ Doctors
-      _____________________________________________
-      |Name       | Email             | Password   |
-      _____________________________________________
+      
+      Name       | Email             | Password   |
+   
       Naveen      | naveen@gmail.com  | naveen@007
-      _____________________________________________
+      
       Hussain     | hussain@gmail.com | hussain@007
-      _____________________________________________
+     
       Rajesh Nair | rajesh@gmail.com  | rajesh@007
-      _____________________________________________
+      
 
 🧑‍🦱 Patients
-      _____________________________________________
+     
       |Name       | Email             | Password  |
-      _____________________________________________
+  
       Nihal      | nihal@gmail.com  | nihal@007
-      _____________________________________________
-      Arun Kumar     | arunkumar@gmail.com | arun@007@007
-      _____________________________________________
-      Anas | anas@gmail.com  | anas@007
-      _____________________________________________
+      
+      Arun Kumar | arunkumar@gmail.com | arun@007@007
+      
+      Anas       | anas@gmail.com  | anas@007
+      
 
 
 
 📸 Screenshots
 
 
-  LoginPage (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_161956_mrtcts.png)
-  SignUp (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_162014_upm87f.png)
+ LoginPage (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_161956_mrtcts.png) <br/>
+ SignUp (https://res.cloudinary.com/dze7v0evj/image/upload/v1759402263/Screenshot_2025-10-02_162014_upm87f.png)
 
  Patient -
 
-  PatientHomePage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401309/patient-homePage.png)
-  DoctorDetailsPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401357/DoctotDetailspage.png)
+  PatientHomePage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401309/patient-homePage.png)<br/>
+  DoctorDetailsPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401357/DoctotDetailspage.png)<br/>
   PatientAppointmentPage - (https://res.cloudinary.com/dze7v0evj/image/upload/v1759401358/Patient-appointment-images.png)
 
 
